@@ -16,7 +16,7 @@ namespace TodoApi.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TodoItem>().ToContainer("TodoItemsCollection");
+            modelBuilder.Entity<TodoItem>().ToContainer("TodoContainer");
         }
 
     }

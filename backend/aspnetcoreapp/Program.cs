@@ -2,9 +2,16 @@ using TodoApi.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.IO;
+using DotNetEnv;
+
+Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+// Configure Azure Key Vault access with credentials from environment variables
+var keyVaultAccountEndpoint = Environment.GetEnvironmentVariable("ACCOUNT_ENDPOINT");
+var keyVaultAccountKey = Environment.GetEnvironmentVariable("ACCOUNT_KEY");
+var keyVaultDatabaseName = Environment.GetEnvironmentVariable("DATABASE_NAME");
 
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                      .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
@@ -23,13 +30,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
-// // Add services to the container.
-builder.Services.AddDbContext<TodoContext>(opt =>
-    opt.UseCosmos(
-        builder.Configuration["CosmosDbSettings:AccountEndpoint"],
-        builder.Configuration["CosmosDbSettings:AccountKey"],
-        builder.Configuration["CosmosDbSettings:DatabaseName"]
-    ));
+if (!string.IsNullOrEmpty(keyVaultAccountEndpoint) && !string.IsNullOrEmpty(keyVaultAccountKey) && !string.IsNullOrEmpty(keyVaultDatabaseName)) {
+    // Add services to the container.
+    builder.Services.AddDbContext<TodoContext>(opt =>
+        opt.UseCosmos(
+            keyVaultAccountEndpoint,
+            keyVaultAccountKey,
+            keyVaultDatabaseName
+        ));
+}
+
+
 
 var app = builder.Build();
 

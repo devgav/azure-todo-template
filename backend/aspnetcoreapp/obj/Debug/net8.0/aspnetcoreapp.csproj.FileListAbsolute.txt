@@ -74,3 +74,6 @@ C:\Users\gavinpeng\repos\todo\backend\aspnetcoreapp\obj\Debug\net8.0\aspnetcorea
 C:\Users\gavinpeng\repos\todo\backend\aspnetcoreapp\obj\Debug\net8.0\aspnetcoreapp.genruntimeconfig.cache
 C:\Users\gavinpeng\repos\todo\backend\aspnetcoreapp\obj\Debug\net8.0\ref\aspnetcoreapp.dll
 C:\Users\gavinpeng\repos\todo\backend\aspnetcoreapp\bin\Debug\net8.0\MongoDB.EntityFrameworkCore.dll
+C:\Users\gavinpeng\repos\todo\backend\aspnetcoreapp\obj\Debug\net8.0\aspnetcoreapp.sourcelink.json
+C:\Users\gavinpeng\repos\todo\backend\aspnetcoreapp\bin\Debug\net8.0\DotNetEnv.dll
+C:\Users\gavinpeng\repos\todo\backend\aspnetcoreapp\bin\Debug\net8.0\Sprache.dll
